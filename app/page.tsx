@@ -19,19 +19,28 @@ const skillMapping = {
   vue: 'Vue'
 };
 
+const skillIcons = [
+  'express', 'html5', 'css3', 'js', 'php',
+  'node-js', 'laravel', 'golang', 'bootstrap',
+  'mysql', 'vue'
+];
+
+function SkillIcon({ icon }: { icon: string }) {
+  if (icon === 'express') return <SiExpress className="skill-icon" />;
+  if (icon === 'mysql') return <SiMysql className="skill-icon" />;
+  if (icon === 'vue') return <SiVuedotjs className="skill-icon" />;
+  return <i className={`fab fa-${icon} skill-icon`}></i>;
+}
+
 export default function HomePage() {
   useEffect(() => {
-    // JS interaktif bisa diletakkan di sini jika ada
+    // Reserved for future interactive behavior
   }, [])
 
   return (
     <>
-      {/* Animasi Background */}
-      <div className="bg-animation">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div className="square" key={i}></div>
-        ))}
-      </div>
+      {/* Background texture */}
+      <div className="bg-animation"></div>
 
       <div className="container">
         {/* Header */}
@@ -41,22 +50,24 @@ export default function HomePage() {
           </div>
           <nav>
             <ul>
-              <li><a href="#home" style={{ fontWeight: 'bold' }}>Home</a></li>
-              <li><a href="#about" style={{ fontWeight: 'bold' }}>About</a></li>
-              <li><a href="#skills" style={{ fontWeight: 'bold' }}>Skills</a></li>
-              <li><a href="#projects" style={{ fontWeight: 'bold' }}>Projects</a></li>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#projects">Projects</a></li>
             </ul>
           </nav>
         </header>
 
-        {/* Hero */}
+        {/* Hero — welcome message only */}
         <section className="hero" id="home">
           <div className="hero-text">
-            <h1>Hi, I'm <span>Adrian Baihaqi</span><br />Software Developer</h1>
-            <p>I'm enthusiastic about building websites that are both visually appealing and functional. With my expertise in various technologies, I'm able to turn your ideas into reality.</p>
-          </div>
-          <div className="hero-image">
-            <img src="/images/adrian-mantap.jpg" alt="Profile" className="profile-img" />
+            <span className="hero-eyebrow">Welcome to my portofolio</span>
+            <h1><span> Adrian Baihaqi</span></h1>
+            <p>Thanks for stopping by. Here you'll find a bit about who I am, the tools I work with, and a selection of projects I've built along the way.</p>
+            <div className="hero-actions">
+              <a href="#projects" className="btn">View Projects</a>
+              <a href="#about" className="btn btn-outline">About Me</a>
+            </div>
           </div>
         </section>
 
@@ -64,11 +75,19 @@ export default function HomePage() {
         <section className="section" id="about">
           <div className="section-title"><h2>About Me</h2></div>
           <div className="about-content">
+            <div className="about-photo">
+              <div className="about-photo-frame">
+                <img src="/images/profile.png" alt="Adrian Baihaqi" className="profile-img" />
+              </div>
+            </div>
             <div className="about-text">
-              <h3>Who Am I?</h3>
-              <p>I'm a software developer with a passion for building functional, efficient, and user-friendly applications. I have experience in both front-end and back-end development across web and desktop platforms, and I'm always eager to learn and work with new technologies.</p>
-              <p>My journey in software development began during my time in vocational school, and since then, I’ve consistently improved my skills through various personal and team projects.</p>
-              <p>When I'm not coding, I enjoy exploring emerging technologies, learning about different industries, and engaging in hobbies that broaden my perspective.</p>
+              <h3 className="about-name">Adrian Baihaqi</h3>
+              <span className="about-role">Backend Developer</span>
+              <p className="about-location">
+                <i className="fas fa-map-marker-alt"></i> Based in Indonesia
+              </p>
+              <p>I'm a backend developer passionate about creating efficient, secure, and maintainable server-side applications. I specialize in API development, database management, and system architecture.</p>
+              <p>I continuously expand my knowledge through hands on projects and enjoy exploring new technologies to build better software solutions.</p>
             </div>
           </div>
         </section>
@@ -76,30 +95,17 @@ export default function HomePage() {
         {/* Skills */}
         <section className="section" id="skills">
           <div className="section-title"><h2>My Skills</h2></div>
-          <div className="skills-container">
-            {[
-              'express', 'html5', 'css3', 'js', 'php', 
-              'node-js', 'laravel', 'golang', 'bootstrap', 
-              'mysql', 'vue'
-            ].map((icon, i) => (
-              <div className="skill-item" key={i}>
-                {/* Kondisi untuk menampilkan ikon */}
-                {icon === 'express' ? (
-                  <SiExpress className="skill-icon" />
-                ) : icon === 'mysql' ? (
-                  <SiMysql className="skill-icon" />
-                ) : icon === 'vue' ? (
-                  <SiVuedotjs className="skill-icon" />
-                ) : (
-                  <i className={`fab fa-${icon} skill-icon`}></i>
-                )}
-        
-                {/* Nama lengkap bahasa/framework dan bold */}
-                <span className="skill-name" style={{ fontWeight: 'bold' }}>
-                  {skillMapping[icon as keyof typeof skillMapping]}
-                </span>
-              </div>
-            ))}
+          <div className="skills-marquee">
+            <div className="skills-track">
+              {[...skillIcons, ...skillIcons].map((icon, i) => (
+                <div className="skill-item" key={i}>
+                  <SkillIcon icon={icon} />
+                  <span className="skill-name">
+                    {skillMapping[icon as keyof typeof skillMapping]}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -109,39 +115,58 @@ export default function HomePage() {
           <div className="projects-container">
 
             <div className="project-card">
-              <img src= "/images/mockup3.png" alt="Project 1" className="project-img" />
+              <div className="project-img-wrapper">
+                <img src="/images/Virtulist.png" alt="Project 1" className="project-img" />
+              </div>
               <div className="project-info">
                 <h3>Virtulist - To-Do List</h3>
-                <p>   A responsive and user-friendly task management web application designed to help users organize, prioritize, and track their daily activities efficiently. 
+                <p>A responsive and user-friendly task management web application designed to help users organize, prioritize, and track their daily activities efficiently.
                 Built using Laravel for both frontend and backend development, and developed using PHP and JavaScript.</p>
                 <div className="project-links">
-                  <a href="https://github.com/KRNCw5936/Virtulist-To-Do-List.git"><i className="fab fa-github"></i> Code</a>
+                  <a href="https://github.com/SnowFx1/Virtulist-To-Do-List.git"><i className="fab fa-github"></i> View On Github</a>
                 </div>
               </div>
             </div>
 
             <div className="project-card">
-              <img src="/images/desktop.png" alt="Project 2" className="project-img" />
+              <div className="project-img-wrapper">
+                <img src="/images/Student-Data-Management.png" alt="Project 2" className="project-img" />
+              </div>
               <div className="project-info">
                 <h3>Student Data Management - Desktop App</h3>
-                <p>A desktop application designed to manage student data efficiently, including adding, editing, and deleting records. 
+                <p>A desktop application designed to manage student data efficiently, including adding, editing, and deleting records.
                 Developed using Java and built with the NetBeans IDE, this application features a user-friendly interface suitable for academic environments.</p>
                 <div className="project-links">
-                  <a href="https://github.com/KRNCw5936/Simple-Desktop.git"><i className="fab fa-github"></i> Code</a>
+                  <a href="https://github.com/SnowFx1/Simple-Desktop.git"><i className="fab fa-github"></i> View On Github</a>
                 </div>
               </div>
             </div>
 
             <div className="project-card">
-              <img src="/images/laptop-and-handphone.png" alt="Project 3" className="project-img" />
+              <div className="project-img-wrapper">
+                <img src="/images/Starbhak-Market.png" alt="Project 3" className="project-img" />
+              </div>
               <div className="project-info">
                 <h3>Starbhak Market - Website and Mobile</h3>
-                <p>  A marketplace application created for both web and mobile platforms, showcasing a modern and intuitive interface for browsing various digital products. 
-                      The website was developed using standard web technologies such as HTML, CSS, and JavaScript, while the mobile version was built using Flutter. 
+                <p>A marketplace application created for both web and mobile platforms, showcasing a modern and intuitive interface for browsing various digital products.
+                      The website was developed using standard web technologies such as HTML, CSS, and JavaScript, while the mobile version was built using Flutter.
                       The project emphasizes a clean visual layout, responsive design, and smooth user experience across devices.</p>
                 <div className="project-links">
-                  <a href="https://github.com/KRNCw5936/Assesment_Web.git"><i className="fab fa-github"></i> Code for Website</a>
-                  <a href="https://github.com/KRNCw5936/Asses_Flutter.git"><i className="fab fa-github"></i> Code for Mobile</a>
+                  <a href="https://github.com/SnowFx1/Assesment_Web.git"><i className="fab fa-github"></i> View On Github for Website</a>
+                  <a href="https://github.com/SnowFx1/Asses_Flutter.git"><i className="fab fa-github"></i> View On Github for Mobile</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-img-wrapper">
+                <img src="/images/WatchSense.png" alt="Project 3" className="project-img" />
+              </div>
+              <div className="project-info">
+                <h3>WatchSense</h3>
+                <p>WatchSense is a movie discovery app built with Laravel and Livewire. It pulls film data from TMDb, lets users explore trending titles, inspect movie details, save likes, and surface recommendations based on taste signals like genre, cast, director, and user activity.</p>
+                <div className="project-links">
+                  <a href="https://github.com/ArkaIbaraki/WatchSense"><i className="fab fa-github"></i> View On Github</a>
                 </div>
               </div>
             </div>
@@ -153,11 +178,11 @@ export default function HomePage() {
       <footer>
         <h2 style={{ marginBottom: 20 }}>Connect with Me</h2>
         <div className="social-links">
-          <a href="https://github.com/KRNCw5936"><i className="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/adrian-baihaqi-069a71303?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i className="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/SnowFx1"><i className="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/adrianbaihaqi/"><i className="fab fa-linkedin-in"></i></a>
           <a href="https://www.instagram.com/adrian_portofolio/"><i className="fab fa-instagram"></i></a>
         </div>
-        <p>&copy; 2025 Adrian Baihaqi. All rights reserved.</p>
+        <p>&copy; 2026 Adrian Baihaqi. All rights reserved.</p>
       </footer>
     </>
   )
