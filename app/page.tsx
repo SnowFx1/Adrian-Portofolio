@@ -170,6 +170,21 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
+            <div className="project-card">
+              <div className="project-img-wrapper">
+                <img src="/images/SmartExpense.png" alt="Project 3" className="project-img" />
+              </div>
+              <div className="project-info">
+                <h3>SmartExpanse</h3>
+                <p>SmartExpense is a modern web application designed to simplify personal finance management. It enables users to record income and expenses, organize transactions by category, and monitor their financial activities through an interactive dashboard. With a clean, responsive interface and secure user authentication, SmartExpense helps users maintain organized financial records and gain better insights into their spending habits.</p>
+                <div className="project-links">
+                  <a href="https://github.com/ArkaIbaraki/SmartExpense"><i className="fab fa-github"></i> View On Github</a>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </section>
       </div>

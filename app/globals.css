@@ -156,12 +156,12 @@ nav ul li a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(56px, 12vw, 120px) 0 clamp(48px, 10vw, 100px);
+  padding: clamp(72px, 15vw, 150px) 0 clamp(60px, 13vw, 130px); /* lebih tinggi dari sebelumnya */
   scroll-margin-top: 84px;
 }
 
 .hero-text {
-  max-width: 640px;
+  max-width: 760px; /* sebelumnya 640px, sekarang lebih lebar */
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -210,7 +210,7 @@ nav ul li a:hover {
 .hero-text p {
   font-size: clamp(15px, 2.2vw, 17px);
   color: var(--ink-muted);
-  max-width: 520px;
+  max-width: 640px;
   margin: 0 auto clamp(24px, 5vw, 34px);
 }
 
@@ -477,13 +477,13 @@ nav ul li a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: clamp(20px, 4vw, 28px);
-  align-items: start; /* prevents row-stretching so each card hugs its own content */
+  align-items: stretch; /* semua card dalam satu baris jadi setinggi card tertinggi */
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%; /* mengikuti tinggi row grid, bukan lagi hanya sepanjang konten */
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
