@@ -16,8 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Adrian Portofolio",
   description: "Adrian Baihaqi Portofolio Website",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
