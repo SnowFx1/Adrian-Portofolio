@@ -446,8 +446,21 @@ nav ul li a:hover {
   box-shadow: var(--shadow-md);
 }
 
+/* Kotak pembungkus icon berukuran tetap, supaya SVG brand-logo (React, Vue,
+   Express, MySQL) dan font-icon (Font Awesome) selalu sejajar & seragam —
+   tidak lagi terlihat campur aduk ukurannya di dalam carousel. */
+.skill-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
 .skill-icon {
   font-size: 34px;
+  width: 1em;
+  height: 1em;
   color: var(--accent);
 }
 

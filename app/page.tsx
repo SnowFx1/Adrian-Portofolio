@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { SiExpress } from 'react-icons/si';
 import { SiMysql } from 'react-icons/si';
 import { SiVuedotjs } from 'react-icons/si';
+import { SiReact } from 'react-icons/si';
 
 const skillMapping = {
   express: 'Express.js',
@@ -16,19 +17,27 @@ const skillMapping = {
   golang: 'Go (Golang)',
   bootstrap: 'Bootstrap',
   mysql: 'MySQL',
-  vue: 'Vue'
+  vue: 'Vue',
+  react: 'React'
 };
 
+// Dikelompokkan per kategori: Bahasa & Markup -> Framework Frontend -> Backend -> Database
 const skillIcons = [
-  'express', 'html5', 'css3', 'js', 'php',
-  'node-js', 'laravel', 'golang', 'bootstrap',
-  'mysql', 'vue'
+  // Bahasa & Markup
+  'html5', 'css3', 'js',
+  // Framework / Library Frontend
+  'vue', 'react', 'bootstrap',
+  // Backend
+  'node-js', 'express', 'php', 'laravel', 'golang',
+  // Database
+  'mysql'
 ];
 
 function SkillIcon({ icon }: { icon: string }) {
   if (icon === 'express') return <SiExpress className="skill-icon" />;
   if (icon === 'mysql') return <SiMysql className="skill-icon" />;
   if (icon === 'vue') return <SiVuedotjs className="skill-icon" />;
+  if (icon === 'react') return <SiReact className="skill-icon" />;
   return <i className={`fab fa-${icon} skill-icon`}></i>;
 }
 
@@ -99,7 +108,9 @@ export default function HomePage() {
             <div className="skills-track">
               {[...skillIcons, ...skillIcons].map((icon, i) => (
                 <div className="skill-item" key={i}>
-                  <SkillIcon icon={icon} />
+                  <div className="skill-icon-box">
+                    <SkillIcon icon={icon} />
+                  </div>
                   <span className="skill-name">
                     {skillMapping[icon as keyof typeof skillMapping]}
                   </span>
@@ -180,6 +191,19 @@ export default function HomePage() {
                 <p>SmartExpense is a modern web application designed to simplify personal finance management. It enables users to record income and expenses, organize transactions by category, and monitor their financial activities through an interactive dashboard. With a clean, responsive interface and secure user authentication, SmartExpense helps users maintain organized financial records and gain better insights into their spending habits.</p>
                 <div className="project-links">
                   <a href="https://github.com/ArkaIbaraki/SmartExpense"><i className="fab fa-github"></i> View On Github</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-img-wrapper">
+                <img src="/images/assetborrow.png" alt="Project 3" className="project-img" />
+              </div>
+              <div className="project-info">
+                <h3>AssetBorrow</h3>
+                <p>AssetBorrow is a fullstack web-based asset borrowing management system designed to streamline inventory management and borrowing workflows within organizations. The application features secure JWT authentication, role-based access control (Super Admin, Inventory Admin, User, and Technician), asset management, borrowing requests, damage reporting, maintenance tracking, and analytics. Built with Express.js, Prisma ORM, MySQL, React, TypeScript, Vite, and Tailwind CSS, AssetBorrow demonstrates modern fullstack development practices through a secure, scalable, and responsive application.</p>
+                <div className="project-links">
+                  <a href="https://github.com/SnowFx1/Asset-Borrow"><i className="fab fa-github"></i> View On Github</a>
                 </div>
               </div>
             </div>
