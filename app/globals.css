@@ -10,9 +10,9 @@
   --border: #e3e6eb;
   --border-strong: #d3d8e0;
 
-  --accent: #1d3557;       /* deep navy — primary */
-  --accent-soft: #eef2f8;  /* pale navy tint, for chips/badges */
-  --accent-line: #3d5a80;  /* steel blue — links / hover */
+  --accent: #1d3557;       
+  --accent-soft: #eef2f8;  
+  --accent-line: #3d5a80;  
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -413,7 +413,7 @@ nav ul li a:hover {
   display: flex;
   width: max-content;
   gap: 18px;
-  animation: skills-scroll 26s linear infinite;
+  animation: skills-scroll 20s linear infinite;
 }
 
 .skills-marquee:hover .skills-track {
